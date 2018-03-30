@@ -6,10 +6,12 @@ import json
 class BossCityCrawlSpider(scrapy.Spider):
     name = 'boss_city_crawl'
     allowed_domains = ['zhipin.com']
-    start_urls = ['https://www.zhipin.com/common/data/city.json']
+    start_urls = ['https://www.zhipin.com/common/data/city.json']   #爬取城市的接口地址
+    start_urls = ['https://www.zhipin.com/common/data/oldindustry.json']   #爬取行业的接口地址
+    start_urls = ['https://www.zhipin.com/common/data/position.json']   #爬取职位的接口地址
 
     def parse(self, response):
-        print(,'lidongdong08171001')
+        # print(,'lidongdong08171001')
         # for tr in response.xpath('.//table[2]/tr'):
         #     # print(tr.xpath('.//td[1]/div/span/text()').extract()[0],'lidongdong')
         #     py = tr.xpath('.//td[1]/div/span/text()').extract()[0]

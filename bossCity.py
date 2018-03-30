@@ -33,6 +33,7 @@ def crawlcity():
                     sql = "insert into bosscity(code,firstchar,name,rank\
                     )VALUES (%s,%s,%s,%s\
                     )"
+                    print(sql)
                     cursor.execute(sql,(a['code'],a['firstChar'],a['name'],a['rank']))
                     db.commit()  #提交数据
                     cursor.close()

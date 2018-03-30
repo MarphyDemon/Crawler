@@ -43,7 +43,7 @@ def lagou(page,city):
     print(resp.content.decode('utf-8'))
     result=resp.json()['content']['positionResult']['result']
     resultSize=int(resp.json()['content']['positionResult']['totalCount']/15)+1
-    if page <= resultSize and result!=[]:
+    if page <= 5 and result!=[]:
         db = pymysql.connect(**config)
         positionName = []
         for i in result:
@@ -78,7 +78,6 @@ def lagou(page,city):
                 print('数据已存在', res)
                 cursor.close()
             else:
-                print("aa")
                 sql = "insert into lagou(positionName,workYear,salary,companyShortName\
                     ,companyIdInLagou,education,jobNature,positionIdInLagou,createTimeInLagou\
                     ,city,industryField,positionAdvantage,companySize,score,positionLables\
@@ -93,16 +92,14 @@ def lagou(page,city):
                     ,%s,%s,%s,%s,%s\
                     )"
                 try:
-                    print("1122")
-                    print(i)
-                    print(positionLables,companyLabelList,businessZones,timeNow,industryLables)
-                    print(i['positionName'],i['workYear'],i['salary'],i['companyShortName']
-                                    ,i['companyId'],i['education'],i['jobNature'],i['positionId'],i['createTime']
-                                    ,i['city'],i['industryField'],i['positionAdvantage'],i['companySize'],i['score'],positionLables
-                                    ,industryLables,i['publisherId'],i['financeStage'],companyLabelList,i['district'],businessZones
-                                    ,i['companyFullName'],i['firstType'],i['secondType'],i['isSchoolJob'],i['subwayline']
-                                    ,i['stationname'],i['linestaion'],i['resumeProcessRate'],timeNow,i['positionName']
-                                    ,'lidong')
+                    # print(positionLables,companyLabelList,businessZones,timeNow,industryLables)
+                    # print(i['positionName'],i['workYear'],i['salary'],i['companyShortName']
+                    #                 ,i['companyId'],i['education'],i['jobNature'],i['positionId'],i['createTime']
+                    #                 ,i['city'],i['industryField'],i['positionAdvantage'],i['companySize'],i['score'],positionLables
+                    #                 ,industryLables,i['publisherId'],i['financeStage'],companyLabelList,i['district'],businessZones
+                    #                 ,i['companyFullName'],i['firstType'],i['secondType'],i['isSchoolJob'],i['subwayline']
+                    #                 ,i['stationname'],i['linestaion'],i['resumeProcessRate'],timeNow,i['positionName']
+                    #                 ,'lidong')
                     cursor.execute(sql,(i['positionName'],i['workYear'],i['salary'],i['companyShortName']
                                     ,i['companyId'],i['education'],i['jobNature'],i['positionId'],i['createTime']
                                     ,i['city'],i['industryField'],i['positionAdvantage'],i['companySize'],i['score'],positionLables
@@ -121,7 +118,7 @@ def lagou(page,city):
         time.sleep(1)
     else:
         print(city+'已保存完')
-        
+
 def main():
     db = pymysql.connect(**config)
     cursor = db.cursor()
