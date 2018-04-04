@@ -1,4 +1,4 @@
-#create by 矜持的折返跑
+#create by lidongdong
 import time
 import requests
 import pymysql
@@ -43,7 +43,7 @@ def lagou(page,city):
     print(resp.content.decode('utf-8'))
     result=resp.json()['content']['positionResult']['result']
     resultSize=int(resp.json()['content']['positionResult']['totalCount']/15)+1
-    if page <= 5 and result!=[]:
+    if page <= resultSize and result!=[]:
         db = pymysql.connect(**config)
         positionName = []
         for i in result:

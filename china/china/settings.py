@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for crawl_boss project
+# Scrapy settings for china project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,14 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'crawl_boss'
+BOT_NAME = 'china'
 
-SPIDER_MODULES = ['crawl_boss.spiders']
-NEWSPIDER_MODULE = 'crawl_boss.spiders'
+SPIDER_MODULES = ['china.spiders']
+NEWSPIDER_MODULE = 'china.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'crawl_boss (+http://www.yourdomain.com)'
+#USER_AGENT = 'china (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -47,13 +47,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'crawl_boss.middlewares.CrawlBossSpiderMiddleware': 543,
+#    'china.middlewares.ChinaSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'crawl_boss.middlewares.CrawlBossDownloaderMiddleware': 543,
+#    'china.middlewares.ChinaDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -65,7 +65,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'crawl_boss.pipelines.CrawlBossPipeline': 300,
+#    'china.pipelines.ChinaPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -86,6 +86,5 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_ENABLED = True
 #HTTPCACHE_EXPIRATION_SECS = 0
 #HTTPCACHE_DIR = 'httpcache'
-# HTTPCACHE_IGNORE_HTTP_CODES = []
-HTTPERROR_ALLOWED_CODES = [403]
+#HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'

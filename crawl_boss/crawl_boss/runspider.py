@@ -1,3 +1,3 @@
 from scrapy import cmdline
 # 执行cmd命令
-cmdline.execute(['scrapy', 'crawl', 'boss_job'])
+cmdline.execute(['scrapy', 'crawl', 'boss_jobs'])

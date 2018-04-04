@@ -43,11 +43,11 @@ def crawlcity():
 def getcity():
     db = pymysql.connect(**config)
     cursor = db.cursor()
-    sqlExit = "select name from bosscity"
+    sqlExit = "select name,code from bosscity"
     res = cursor.execute(sqlExit)
     results = cursor.fetchall()
-    for (i,) in results:
-        print(i)
+    for (i,j) in results:
+        print(i,j)
 
 def main(position):
     crawlcity()

@@ -1,4 +1,4 @@
-#create by 矜持的折返跑
+#create by lidongdong
 import time
 import requests
 import pymysql
