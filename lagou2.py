@@ -92,14 +92,6 @@ def lagou(page,city):
                     ,%s,%s,%s,%s,%s\
                     )"
                 try:
-                    # print(positionLables,companyLabelList,businessZones,timeNow,industryLables)
-                    # print(i['positionName'],i['workYear'],i['salary'],i['companyShortName']
-                    #                 ,i['companyId'],i['education'],i['jobNature'],i['positionId'],i['createTime']
-                    #                 ,i['city'],i['industryField'],i['positionAdvantage'],i['companySize'],i['score'],positionLables
-                    #                 ,industryLables,i['publisherId'],i['financeStage'],companyLabelList,i['district'],businessZones
-                    #                 ,i['companyFullName'],i['firstType'],i['secondType'],i['isSchoolJob'],i['subwayline']
-                    #                 ,i['stationname'],i['linestaion'],i['resumeProcessRate'],timeNow,i['positionName']
-                    #                 ,'lidong')
                     cursor.execute(sql,(i['positionName'],i['workYear'],i['salary'],i['companyShortName']
                                     ,i['companyId'],i['education'],i['jobNature'],i['positionId'],i['createTime']
                                     ,i['city'],i['industryField'],i['positionAdvantage'],i['companySize'],i['score'],positionLables

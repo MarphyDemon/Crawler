@@ -1,4 +1,4 @@
-#create by 矜持的折返跑
+#create by lidongdong
 import time
 import requests
 import pymysql
@@ -49,10 +49,9 @@ def getcity():
     for (i,j) in results:
         print(i,j)
 
-def main(position):
+def main():
     crawlcity()
     getcity()
     pass
-#输入你想要爬取的职位名,如:python
 if __name__ == '__main__':
-    main('c')
+    main()
