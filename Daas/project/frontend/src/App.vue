@@ -1,25 +1,24 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <!-- <img src="./assets/logo.png"> -->
     <router-view/>
   </div>
 </template>
 
 <script>
-import API from './fetch/api'
+// import API from './fetch/api'
 export default {
   name: 'App',
    mounted() {
       var self = this;
-      self.getData();
+      // self.getData();
   },
   methods:{
-    getData(){
-      alert("211")
-      API.getData({name:'li'}).then(res=>{
-        console.log(res)
-      })
-    }
+    // getData(){
+    //   API.getData({name:'li'}).then(res=>{
+    //     console.log(res)
+    //   })
+    // }
   }
 }
 

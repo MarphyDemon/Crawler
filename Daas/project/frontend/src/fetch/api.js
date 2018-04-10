@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 
-import * as _ from '../util/tool'
+// import * as _ from '../util/tool'
 var domain = process.env.NODE_ENV !== 'production'?'':'';
 //全局 axios 默认配置
 // axios.defaults.timeout = 5000;
@@ -62,8 +62,10 @@ export default {
     /**
      * Daas    接口
      */
-    // 一级序列接口&二级序列接口
-    getData(params){
-        return fetch(domain + 'get_Data',params);
+    getGradeData(params){
+        return fetch(domain + '/api/get_Grade',params);
+    },
+    getCountData(params){
+        return fetch(domain + '/api/get_Count',params);
     },
 }

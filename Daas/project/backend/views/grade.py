@@ -15,8 +15,8 @@ config={
 }
 
 
-def getData(request):
-    print(request)
+def getGrade(request):
+    print(request.POST.get('jobName',None) )
     db = pymysql.connect(**config)
     cursor = db.cursor()
     sql='select count(*) from lagou'
