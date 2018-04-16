@@ -19,7 +19,10 @@ export default {
     methods:{
         getCount(){
             var self = this;
-            API.getCountData().then(res => {
+            var options = {
+                positionName: '前端'
+            }
+            API.getGradeData(options).then(res => {
                 if(res.success){
                     console.log(res.body)
                 }else{

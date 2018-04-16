@@ -41,6 +41,7 @@ def getOldData(row):
     avgSalary = clearMethod.getJobSalary(salary)
     print('2')
     industry = clearMethod.getIndustry(industryField)
+    # date = clearMethod.getMonth(createTime)
     companyFullName = row[17]
     print('3')
     sqlExit = "select positionId from jobdata where positionId = '%s'" % (positionId)
@@ -70,6 +71,8 @@ def getOldData(row):
             ,%s,%s,%s\
             ,%s,%s,%s,%s\
             )"
+            # ,year,month\
+            # ,%s,%s\
         try:
             print('233','dsdhjs')
             cursor.execute(sql,(positionName,workYear,salary
@@ -77,6 +80,7 @@ def getOldData(row):
                             ,city,industryField,companySize
                             ,financeStage,secondType,timeNow
                             ,grade,avgSalary,industry,companyFullName
+                            # ,date['year'],date['month']
                             ))
         except:
             conn.rollback()

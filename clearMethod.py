@@ -33,7 +33,7 @@ def getJobGrade(value):
     elif value== '5-10年':
         jobGrade='高级'
     elif value== '10年以上':
-        jobgrade='专家'
+        jobGrade='专家'
     elif value=='不限':
         jobGrade='不限'
         # fail()
@@ -42,15 +42,17 @@ def getJobGrade(value):
 
 def getJobSalary(value):
     value=value.replace('K','k')
-    if '-' in value:
-        Salary=value.split('-')
-        avgSalary=(int(Salary[0].split('k')[0])+int(Salary[1].split('k')[0]))/2
-        # print('getJobSalary')
-        return int(avgSalary)
+    if value:
+        if '-' in value:
+            Salary=value.split('-')
+            Salary=(int(Salary[0].split('k')[0])+int(Salary[1].split('k')[0]))/2
+            # print('getJobSalary')
+            avgSalary = float('%.2f' % Salary)
+        else:
+            avgSalary = int(Salary[0].split('k')[0])
     else:
-        # print('avgSalary Error')
-        # failSalary()
-        return 0
+        avgSalary = 0
+    return avgSalary
 
 def getIndustry(value):
     # print('getIndustry')
@@ -65,7 +67,19 @@ def getIndustry(value):
             return value
     else:
         # fail()
-        return ''
+        return 'none'
+
+def getMonth(value):
+    i={}
+    if value:
+        datestr = value.split(" ")[0]
+        dateArray = datestr.split("-")
+        i['year'] = dateArray[0]
+        i['month'] = dateArray[1]
+        return i
+    else:
+        return 'none'
+
 
 #未融资。天使轮，A轮 B轮 C轮 D轮 不需要融资 上市公司
 #def getCompanyValue(value):

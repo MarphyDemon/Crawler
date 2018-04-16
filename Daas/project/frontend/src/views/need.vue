@@ -1,7 +1,7 @@
 <template>
     <div class="dass-page" ref="abc" v-loading.fullscreen="loading">
         <div>
-            <h1>薪酬数据分析</h1>
+            <h1>需求数据分析</h1>
         </div>
         <div class="search-data">
             <div class="iCountUp">
@@ -20,11 +20,12 @@
         <div class="search-btn">
             <el-button type="primary" plain v-on:click="getChart">生成薪酬报告</el-button>
         </div>
-        <first-chart ref='child1' v-if="firstChartFlag"></first-chart>
-        <two-chart ref='child2' v-if="firstChartFlag"></two-chart>
-        <three-chart ref='child3' v-if="firstChartFlag"></three-chart>
-        <four-chart ref='child4' v-if="firstChartFlag"></four-chart>
-        <five-chart ref='child5' v-if="firstChartFlag"></five-chart>
+        
+        <six-chart ref="six" v-if="firstChartFlag"></six-chart>
+        <seven-chart ref="seven" v-if="firstChartFlag"></seven-chart>
+        <eight-chart ref="eight" v-if="firstChartFlag"></eight-chart>
+        <nine-chart ref="nine" v-if="firstChartFlag"></nine-chart>
+
         <div v-if="downFlag" class="download">
             <div class="download-div">
                 <span v-on:click="downloadReport">下载分析报告</span>
@@ -62,20 +63,19 @@ import $ from "jquery";
 import Count from "../components/count-Animate";
 import canvg from "canvg-browser";
 import html2canvas from "html2canvas";
-import FirstChart from '../components/firstChart';
-import TwoChart from '../components/twoChart';
-import ThreeChart from '../components/threeChart';
-import FourChart from '../components/fourChart';
-import FiveChart from '../components/fiveChart';
+import SixChart from '../components/sixChart';
+import SevenChart from '../components/sevenChart';
+import EightChart from '../components/eightChart';
+import NineChart from '../components/nineChart';
+
 export default {
   name: "index",
   components: {
     Count,
-    FirstChart,
-    TwoChart,
-    ThreeChart,
-    FourChart,
-    FiveChart,
+    SixChart,
+    SevenChart,
+    EightChart,
+    NineChart
   },
   data() {
     return {
@@ -91,6 +91,7 @@ export default {
       moduleFlag: false,
       firstChartFlag: false,
       loading: false,
+      yearList: [2018],
       cityList: [],
       gradeList: ['入门','初级','中级','高级','专家','不限'],
       companySizeList: ['少于15人','10-50人','15-50人','50-150人','150-500人','500-2000人','2000人以上'],
@@ -114,22 +115,22 @@ export default {
   methods: {
     getCitylist(){
         var self = this;
-        self.loading = true;
+        sel.loading=true;
         API.getCityList().then(res => {
             if(res.success){
-                self.cityList = res.body.citylist;
+                self.cityList = res.body.citylist
             }else{
                 console.log(res.body)
             }
-            self.loading = false;
+            self.loading=false;
         })
     },
     getIndustryList(){
         var self = this;
-        self.loading = true;
+        self.loading=true;
         API.getIndustryList().then(res => {
             if(res.success){
-                self.industryList = res.body.industryList;
+                self.industryList = res.body.industryList
             }else{
                 console.log(res.body)
             }
@@ -141,12 +142,12 @@ export default {
         self.firstChartFlag=true;
         self.downFlag = true;
         self.$nextTick(() => {
-            self.$refs.child1.getGradeData()
-            self.$refs.child2.getCityData()
-            self.$refs.child3.getIndustryData()
-            self.$refs.child4.getComSizeData()
-            self.$refs.child5.getStageData()
+          self.$refs.six.getMonthData();
+          self.$refs.seven.getCityNeedData();
+          self.$refs.eight.getComSizeNeedData();
+          self.$refs.nine.getStageNeedData();
         })
+
     },
     getCount(){
         var self = this;
@@ -165,13 +166,13 @@ export default {
     },
     downloadReport() {
       var that = this;
-      that.moduleFlag = true;
+      that.selectmod = true;
     },
     moduleBack() {
       this.moduleFlag = false;
+      this.selectmod = false;
     },
     sureDown() {
-        
     },
      // 返回顶部按钮
     backtop() {

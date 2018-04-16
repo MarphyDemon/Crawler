@@ -113,6 +113,7 @@ class AsySpider(object):
                 grade = clearMethod.getJobGrade(i['workYear'])
                 avgSalary = clearMethod.getJobSalary(i['salary'])
                 industry = clearMethod.getIndustry(i['industryField'])
+                # date = clearMethod.getMonth(i['createTime'])
                 # print('industry',industry)
                 # if(industry == 'false'):
                 #     page=page+1
@@ -134,12 +135,16 @@ class AsySpider(object):
                         ,%s,%s,%s\
                         ,%s,%s,%s,%s\
                         )"
+
+                        # ,year,month\
+                        # ,%s,%s\
                     try:
                         cursor.execute(sql,(i['positionName'],i['workYear'],i['salary']
                                         ,i['education'],i['jobNature'],i['positionId'],i['createTime']
                                         ,i['city'],i['industryField'],i['companySize']
                                         ,i['financeStage'],i['secondType'],timeNow
                                         ,grade,avgSalary,industry,i['companyFullName']
+                                        # ,date['year'],date['month']
                                         ))
                         db.commit()  #提交数据
                         cursor.close()
