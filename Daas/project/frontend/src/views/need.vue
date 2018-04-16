@@ -1,58 +1,65 @@
 <template>
-    <div class="dass-page" ref="abc" v-loading.fullscreen="loading">
-        <div>
-            <h1>需求数据分析</h1>
-        </div>
-        <div class="search-data">
-            <div class="iCountUp">
-                <span class="search-text">本站目前共采集</span>
-                <count :countN = "count" :speed = "speed"></count>
-                <span class="search-text">条数据，清洗</span>
-                <count :countN = "failCount" :speed = "1"></count>
-                <span class="search-text">条无效数据，目前有效数据</span>
-                <count :countN = "vaildCount" :speed = "speed"></count>
-                <span class="search-text">条</span>
-            </div>
-        </div>
-        <div class="search">
-            <el-input v-model="positionName" placeholder="请输入职业,不能为空！！！"></el-input>
-        </div>
-        <div class="search-btn">
-            <el-button type="primary" plain v-on:click="getChart">生成薪酬报告</el-button>
-        </div>
-        
-        <six-chart ref="six" v-if="firstChartFlag"></six-chart>
-        <seven-chart ref="seven" v-if="firstChartFlag"></seven-chart>
-        <eight-chart ref="eight" v-if="firstChartFlag"></eight-chart>
-        <nine-chart ref="nine" v-if="firstChartFlag"></nine-chart>
+    <div>
+        <HeadFirst></HeadFirst>
+        <manageLeft></manageLeft>
+        <div class="body-right">
+            <div class="dass-page" ref="abc" v-loading.fullscreen="loading">
+                <div>
+                    <h1>需求数据分析</h1>
+                </div>
+                <div class="search-data">
+                    <div class="iCountUp">
+                        <span class="search-text">本站目前共采集</span>
+                        <count :countN = "count" :speed = "speed"></count>
+                        <span class="search-text">条数据，清洗</span>
+                        <count :countN = "failCount" :speed = "1"></count>
+                        <span class="search-text">条无效数据，目前有效数据</span>
+                        <count :countN = "vaildCount" :speed = "speed"></count>
+                        <span class="search-text">条</span>
+                    </div>
+                </div>
+                <div class="search">
+                    <el-input v-model="positionName" placeholder="请输入职业,不能为空！！！"></el-input>
+                </div>
+                <div class="search-btn">
+                    <el-button type="primary" plain v-on:click="getChart">生成薪酬报告</el-button>
+                </div>
+                
+                <six-chart ref="six" v-if="firstChartFlag"></six-chart>
+                <seven-chart ref="seven" v-if="firstChartFlag"></seven-chart>
+                <eight-chart ref="eight" v-if="firstChartFlag"></eight-chart>
+                <nine-chart ref="nine" v-if="firstChartFlag"></nine-chart>
 
-        <div v-if="downFlag" class="download">
-            <div class="download-div">
-                <span v-on:click="downloadReport">下载分析报告</span>
+                <div v-if="downFlag" class="download">
+                    <div class="download-div">
+                        <span v-on:click="downloadReport">下载分析报告</span>
+                    </div>
+                </div>
+                <div class="back-top" v-if="backBtnFlag" v-on:click="backtop">
+                    <p>
+                        <i class="back-icon"></i>
+                    </p>
+                    <span>顶部</span>
+                </div>
+                <div class="download-module" v-if="moduleFlag">
+                    <div class="module-title">
+                        <span>下载分析报告</span>
+                        <img src="../assets/img/close.png" alt="" v-on:click="moduleBack">
+                    </div>
+                    <div class="module-check">
+                        <p>下载当前分析内容</p>
+                    </div>
+                    <div class="module-font">
+                        <p>下载更多分析内容，请联系我，18846183249</p>
+                    </div>
+                    <div class="module-button">
+                        <span class="backBtn" v-on:click="moduleBack">取消</span>
+                        <span class="sureBtn" v-on:click="sureDown">确定</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="back-top" v-if="backBtnFlag" v-on:click="backtop">
-            <p>
-                <i class="back-icon"></i>
-            </p>
-            <span>顶部</span>
-        </div>
-        <div class="download-module" v-if="moduleFlag">
-            <div class="module-title">
-                <span>下载分析报告</span>
-                <img src="../assets/img/close.png" alt="" v-on:click="moduleBack">
-            </div>
-            <div class="module-check">
-                <p>下载当前分析内容</p>
-            </div>
-            <div class="module-font">
-                <p>下载更多分析内容，请联系我，18846183249</p>
-            </div>
-            <div class="module-button">
-                <span class="backBtn" v-on:click="moduleBack">取消</span>
-                <span class="sureBtn" v-on:click="sureDown">确定</span>
-            </div>
-        </div>
+        <x-footer></x-footer> 
     </div>
 </template>
 
@@ -68,6 +75,9 @@ import SevenChart from '../components/sevenChart';
 import EightChart from '../components/eightChart';
 import NineChart from '../components/nineChart';
 
+import HeadFirst from '../components/header.vue';
+import manageLeft from "../components/manageLeft.vue";
+import XFooter from '../components/footer'
 export default {
   name: "index",
   components: {
@@ -75,7 +85,11 @@ export default {
     SixChart,
     SevenChart,
     EightChart,
-    NineChart
+    NineChart,
+
+    HeadFirst,
+    manageLeft,
+    XFooter
   },
   data() {
     return {
@@ -115,7 +129,7 @@ export default {
   methods: {
     getCitylist(){
         var self = this;
-        sel.loading=true;
+        self.loading=true;
         API.getCityList().then(res => {
             if(res.success){
                 self.cityList = res.body.citylist

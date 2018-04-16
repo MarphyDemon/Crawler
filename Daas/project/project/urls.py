@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.views.generic import TemplateView
 from django.conf.urls import url
-from backend.views import grade,count,city,industry,companySize,stage,month,cityneed,comsize,stageneed
+from backend.views import grade,count,city,industry,companySize,stage,month,cityneed,comsize,stageneed,user
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,4 +38,8 @@ urlpatterns = [
     url(r'^get_PCity', count.getPCity, name='get_PCity'),
     url(r'^get_CList', count.getCList, name='get_CList'),
     url(r'^get_IList', count.getIList, name='get_IList'),
+    url(r'^login', user.login, name = 'login'),
+    url(r'^regist', user.regist, name = 'regist'),
+    url(r'^logout', user.logout, name = 'logout'),
+    url(r'^index', user.index, name = 'index'),
 ]

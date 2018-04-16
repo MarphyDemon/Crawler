@@ -4,6 +4,8 @@ import index from '@/views/index'
 import test from '@/views/test'
 import need from '@/views/need'
 import count from '@/views/count'
+import login from '@/views/login'
+import join from '@/views/join'
 
 Vue.use(Router)
 
@@ -28,6 +30,16 @@ export default new Router({
       path: '/count',
       name: 'count',
       component: count
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: login
+    },
+    {
+      path: '/join',
+      name: 'join',
+      component: join
     }
   ]
 })

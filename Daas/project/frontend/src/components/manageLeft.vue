@@ -5,7 +5,7 @@
                 <li>
                     <ul class="sub-nav">
                         <li>
-                            <a class="last-nav" v-bind:class="{'current': currentPath == '/'}" href="/">
+                            <a class="last-nav" v-bind:class="{'current': currentPath == '/index'}" href="/#/index">
                                  <i class="shebao-icon">
                                     <img src="../assets/img/money.png" alt="">
                                 </i>

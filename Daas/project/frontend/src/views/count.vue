@@ -1,38 +1,45 @@
 <template>
-    <div class="dass-page" ref="abc">
-        <div>
-            <h1>统计报告</h1>
-        </div>
-        <p-job></p-job>
-        <p-company></p-company>
-        <p-city></p-city>
-        <div v-if="downFlag" class="download">
-            <div class="download-div">
-                <span v-on:click="downloadReport">下载统计报告</span>
+    <div>
+        <HeadFirst></HeadFirst>
+        <manageLeft></manageLeft>
+        <div class="body-right">
+            <div class="dass-page" ref="abc">
+                <div>
+                    <h1>统计报告</h1>
+                </div>
+                <p-job></p-job>
+                <p-company></p-company>
+                <p-city></p-city>
+                <div v-if="downFlag" class="download">
+                    <div class="download-div">
+                        <span v-on:click="downloadReport">下载统计报告</span>
+                    </div>
+                </div>
+                <div class="back-top" v-if="backBtnFlag" v-on:click="backtop">
+                    <p>
+                        <i class="back-icon"></i>
+                    </p>
+                    <span>顶部</span>
+                </div>
+                <div class="download-module" v-if="moduleFlag">
+                    <div class="module-title">
+                        <span>下载统计报告</span>
+                        <img src="../assets/img/close.png" alt="" v-on:click="moduleBack">
+                    </div>
+                    <div class="module-check">
+                        <p>下载当前统计内容</p>
+                    </div>
+                    <div class="module-font">
+                        <p>下载更多统计内容，请联系我，18846183249</p>
+                    </div>
+                    <div class="module-button">
+                        <span class="backBtn" v-on:click="moduleBack">取消</span>
+                        <span class="sureBtn" v-on:click="sureDown">确定</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="back-top" v-if="backBtnFlag" v-on:click="backtop">
-            <p>
-                <i class="back-icon"></i>
-            </p>
-            <span>顶部</span>
-        </div>
-        <div class="download-module" v-if="moduleFlag">
-            <div class="module-title">
-                <span>下载统计报告</span>
-                <img src="../assets/img/close.png" alt="" v-on:click="moduleBack">
-            </div>
-            <div class="module-check">
-                <p>下载当前统计内容</p>
-            </div>
-            <div class="module-font">
-                <p>下载更多统计内容，请联系我，18846183249</p>
-            </div>
-            <div class="module-button">
-                <span class="backBtn" v-on:click="moduleBack">取消</span>
-                <span class="sureBtn" v-on:click="sureDown">确定</span>
-            </div>
-        </div>
+        <x-footer></x-footer> 
     </div>
 </template>
 
@@ -46,10 +53,19 @@ import $ from "jquery";
 import PJob from '../components/pJob';
 import PCompany from '../components/pCompany';
 import PCity from '../components/pCity'
+
+import HeadFirst from '../components/header.vue';
+import manageLeft from "../components/manageLeft.vue";
+import XFooter from '../components/footer'
 export default {
   name: "count",
   components: {
-      PJob,PCompany,PCity
+    PJob,
+    PCompany,
+    PCity,
+    HeadFirst,
+    manageLeft,
+    XFooter
   },
   data() {
     return {

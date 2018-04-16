@@ -126,5 +126,17 @@ export default {
     getIndustryList(params){
         return fetch(domain + '/api/get_IList',params)
     },
+    login(params){
+        return fetch(domain + '/api/login',params)
+    },
+    regist(params){
+        return fetch(domain + '/api/regist',params)
+    },
+    logout(params){
+        return fetch(domain + '/api/logout',params)
+    },
+    index(params){
+        return fetch(domain + '/api/index',params)
+    },
 }
 
