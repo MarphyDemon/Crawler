@@ -65,78 +65,78 @@ export default {
     // 薪酬数据接口
     // 图一接口    获取根据职级不同得到的薪酬分析数据
     getGradeData(params){
-        return fetch(domain + '/api/get_Grade',params);
+        return fetch(domain + '/get_Grade',params);
     },
     // 获取统计数据接口
     getCountData(params){
-        return fetch(domain + '/api/get_Count',params);
+        return fetch(domain + '/get_Count',params);
     },
     getSGradeData(params){
-        return fetch(domain + '/api/get_SGrade',params);
+        return fetch(domain + '/get_SGrade',params);
     },
     // 图二接口    获取根据城市不同得到的不同职级薪酬分析数据
     getCityData(params){
-        return fetch(domain + '/api/get_City',params);
+        return fetch(domain + '/get_City',params);
     },
     // 图三接口     获取根据城市以及行业不同得到的不同职级薪酬数据
     getIndustryData(params){
-        return fetch(domain + '/api/get_Industry',params)
+        return fetch(domain + '/get_Industry',params)
     },
     // 图四接口     获取根据公司规模城市不同得到的不同职级的薪酬数据
     getComSizeData(params){
-        return fetch(domain + '/api/get_ComSize',params)
+        return fetch(domain + '/get_ComSize',params)
     },
     // 图五接口     获取根据公司融资阶段不同得到的不同职级的薪酬数据
     getStageData(params){
-        return fetch(domain + '/api/get_Stage',params)
+        return fetch(domain + '/get_Stage',params)
     },
     // 需求数据接口
     // 根据月份不同获取需求数据接口
     getMonthData(params){
-        return fetch(domain + '/api/get_Month',params)
+        return fetch(domain + '/get_Month',params)
     },
     //根据月份以及城市不同获取需求数据接口
     getCityNeedData(params){
-        return fetch(domain + '/api/get_CityNeed',params)
+        return fetch(domain + '/get_CityNeed',params)
     },
     // 获取月份以及公司大小不同获取需求数据接口
     getComSizeNeedData(params){
-        return fetch(domain + '/api/get_ComNeed',params)
+        return fetch(domain + '/get_ComNeed',params)
     },
     // 根据公司融资情况以及月份获取需求数据接口
     getStageNeedData(params){
-        return fetch(domain + '/api/get_Sneed',params)
+        return fetch(domain + '/get_Sneed',params)
     },
     // 统计报告分析
     // 获取职位热度信息  招聘职位数>100
     getPJobData(params){
-        return fetch(domain + '/api/get_PJob',params)
+        return fetch(domain + '/get_PJob',params)
     },
     // 获取招聘数量多的公司    招聘数>100
     getPComData(params){
-        return fetch(domain + '/api/get_PCom',params)
+        return fetch(domain + '/get_PCom',params)
     },
     // 获取招聘数量多的城市    招聘数>500
     getPCityData(params){
-        return fetch(domain + '/api/get_PCity',params)
+        return fetch(domain + '/get_PCity',params)
     },
     getCityList(params){
-        return fetch(domain + '/api/get_CList',params)
+        return fetch(domain + '/get_CList',params)
     },
     getIndustryList(params){
-        return fetch(domain + '/api/get_IList',params)
+        return fetch(domain + '/get_IList',params)
     },
     login(params){
-        return fetch(domain + '/api/login',params)
+        return fetch(domain + '/login',params)
     },
     regist(params){
-        return fetch(domain + '/api/regist',params)
+        return fetch(domain + '/regist',params)
     },
     logout(params){
-        return fetch(domain + '/api/logout',params)
+        return fetch(domain + '/logout',params)
     },
     index(params){
-        return fetch(domain + '/api/index',params)
+        return fetch(domain + '/index',params)
     },
 }
 
