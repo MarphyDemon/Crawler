@@ -225,7 +225,7 @@ def main():
     db = pymysql.connect(**config)
     cursor = db.cursor()
     sql = "select name from bosscity"  
-    try:  
+    try: 
         cursor.execute(sql)    #执行sql语句  
         results = cursor.fetchall()
         for (i,) in results:
