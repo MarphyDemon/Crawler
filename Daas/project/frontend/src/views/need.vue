@@ -65,6 +65,7 @@
 
 
 <script>
+import * as common from '../assets/js/common';
 import API from "../fetch/api.js";
 import $ from "jquery";
 import Count from "../components/count-Animate";
@@ -115,16 +116,21 @@ export default {
   },
   mounted() {
       var self = this;
-      self.getCount();
-      self.getCitylist();
-      self.getIndustryList();
-    $(window).scroll(function() {
-        self.scroll =
-        document.body.scrollTop ||
-        document.documentElement.scrollTop ||
-        window.pageYOffset;
-        self.backBtnFlag = self.scroll > 700;
-    });
+        if(common.GetCookie('username')){
+            self.getCount();
+            self.getCitylist();
+            self.getIndustryList();
+            $(window).scroll(function() {
+                self.scroll =
+                document.body.scrollTop ||
+                document.documentElement.scrollTop ||
+                window.pageYOffset;
+                self.backBtnFlag = self.scroll > 700;
+            });
+        }else{
+            console.log("未登录！")
+            this.$router.push({path: '/login'})
+        }
   },
   methods: {
     getCitylist(){

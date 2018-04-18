@@ -45,6 +45,7 @@
 
 
 <script>
+import * as common from '../assets/js/common';
 import API from "../fetch/api.js";
 import canvg from "canvg-browser";
 import html2canvas from "html2canvas";
@@ -76,13 +77,18 @@ export default {
   },
   mounted() {
       var self = this;
-    $(window).scroll(function() {
-        self.scroll =
-        document.body.scrollTop ||
-        document.documentElement.scrollTop ||
-        window.pageYOffset;
-        self.backBtnFlag = self.scroll > 700;
-    });
+      if(common.GetCookie('username')){
+        $(window).scroll(function() {
+            self.scroll =
+            document.body.scrollTop ||
+            document.documentElement.scrollTop ||
+            window.pageYOffset;
+            self.backBtnFlag = self.scroll > 700;
+        });
+      }else{
+            console.log("未登录！")
+            this.$router.push({path: '/login'})
+      }
   },
   methods: {
     downloadReport() {

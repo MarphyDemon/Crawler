@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponseRedirect
 from django.db.models.functions import TruncDate
 import pymysql
 from backend.views import resp
@@ -27,14 +27,13 @@ def regist(request):
     password = request.POST.get('password',None) 
     date_joined = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     sqlC = 'select username from auth_user where username=%s or email=%s or phoneNum=%s'
-    res = cursor.execute(sqlC,(username,username,username))
+    res = cursor.execute(sqlC,(username,email,phoneNum))
     if res:
         body['msg'] = '已有账号，请登录！'
         result=resp.handle(body,True)
     else:
         sql = "insert into auth_user(username,phoneNum,email,password,date_joined,is_superuser)values (%s,%s,%s,%s,%s,%s)"
         try:
-            print(username,phoneNum,email,password,date_joined,'0')
             cursor.execute(sql,(username,phoneNum,email,password,date_joined,'0'))
             db.commit()
             body['msg'] = '1'
@@ -54,12 +53,15 @@ def login(request):
     cursor = db.cursor()
     username = request.POST.get('username',None)
     password = request.POST.get('password',None) 
-    sql = "select username,password from auth_user where (username=%s or email=%s or phoneNum=%s) and password=%s"
+    sql = "select username from auth_user where (username=%s or email=%s or phoneNum=%s) and password=%s"
     try:
         res = cursor.execute(sql,(username,username,username,password))
-        print(res)
+        results = cursor.fetchall()
         if res:
+            for (row,) in results:
+                result = row
             body['msg'] = '1'
+            body['username']=result
             result=resp.handle(body,True)
         else:
             body['msg'] = '输入用户名或密码错误'

@@ -5,8 +5,7 @@ import App from './App'
 import router from './router'
 
 Vue.config.productionTip = false
-
-import { Select, Option, OptionGroup, Alert, Loading,Input,Button } from 'element-ui';
+import { Select, Option, OptionGroup, Alert, Loading,Input,Button} from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(Select);
 Vue.use(Option);

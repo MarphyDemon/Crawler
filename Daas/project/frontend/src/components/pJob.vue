@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import * as common from '../assets/js/common';
 import * as Highcharts from "highcharts";
 import API from '../fetch/api'
 export default {
@@ -30,7 +31,9 @@ export default {
   },
   mounted(){
     var self = this;
-    self.getPJobData();
+    if(common.GetCookie('username')){
+        self.getPJobData();
+    }
   },
   methods: {
     getPJobData(){

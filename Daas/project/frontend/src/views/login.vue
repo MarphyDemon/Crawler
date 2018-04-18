@@ -61,8 +61,12 @@ export default {
 			API.login(options).then(res => {
 				if(res.success){
 					if(res.body.msg == '1'){
-						console.log('登录成功！')
-						self.$router.push({path:'/'})
+						console.log('登录成功！');
+						self.username = res.body.username;
+						var exp = new Date();
+						exp.setTime(exp.getTime() + 60*60*1000);
+						document.cookie = 'username' + "="+ escape (self.username) + ";expires=" + exp.toGMTString();
+						self.$router.push({path:'/'})	//,query:{'username':self.username}
 					}else{
 						alert(res.body.msg)
 					}
@@ -207,12 +211,13 @@ body{
 	color:#fff;
 	cursor: pointer;
 }
-.join{
-	margin-right: 10px;
-}
 .login-btn span:hover{
 	box-shadow: 0 0 3px #00a1d2;
 	text-shadow: 0 0 1px #b3d6dc,0 0 2px #e6e9de;
 }
+.join{
+	margin-right: 10px;
+}
+
 </style>
 

@@ -5,7 +5,7 @@
                 <li>
                     <ul class="sub-nav">
                         <li>
-                            <a class="last-nav" v-bind:class="{'current': currentPath == '/index'}" href="/#/index">
+                            <a class="last-nav" v-bind:class="{'current': currentPath == '/'}" href="/#/">
                                  <i class="shebao-icon">
                                     <img src="../assets/img/money.png" alt="">
                                 </i>
@@ -33,14 +33,14 @@
 <script>
 import API from "../fetch/api.js";
 import $ from "jquery";
-// import "jquery.nicescroll";
+
 export default {
   data() {
     return {
     };
   },
   created() {
-    window.navMenu = this;
+    var self = this;
   },
   beforeMount() {
   },
