@@ -97,27 +97,27 @@ WSGI_APPLICATION = 'project.wsgi.application'
 #     }
 # }
 
-DATABASES = {
- 'default': {  
- 'ENGINE': 'django.db.backends.mysql',
- 'NAME': 'lagouone', #你的数据库名称 数据库需要自己提前建好
- 'USER': 'root', #你的数据库用户名
- 'PASSWORD': 'marphy0817', #你的数据库密码
- 'HOST': '', #你的数据库主机，留空默认为localhost
- 'PORT': '3306', #你的数据库端口
- }
-}
-
-# DATABASES = {
-#  'default': {  
-#  'ENGINE': 'django.db.backends.mysql',
-#  'NAME': 'lagouone', #你的数据库名称 数据库需要自己提前建好
-#  'USER': 'lagouone', #你的数据库用户名
-#  'PASSWORD': 'Marphy0817', #你的数据库密码
-#  'HOST': '', #你的数据库主机，留空默认为localhost
-#  'PORT': '3306', #你的数据库端口
-#  }
+#DATABASES = {
+# 'default': {  
+# 'ENGINE': 'django.db.backends.mysql',
+# 'NAME': 'lagouone', #你的数据库名称 数据库需要自己提前建好
+# 'USER': 'root', #你的数据库用户名
+# 'PASSWORD': 'marphy0817', #你的数据库密码
+# 'HOST': '', #你的数据库主机，留空默认为localhost
+# 'PORT': '3306', #你的数据库端口
 # }
+#}
+
+DATABASES = {
+  'default': {  
+  	'ENGINE': 'django.db.backends.mysql',
+  	'NAME': 'lagouone', #你的数据库名称 数据库需要自己提前建好
+  	'USER': 'lagouone', #你的数据库用户名
+  	'PASSWORD': 'Marphy0817', #你的数据库密码
+  	'HOST': '', #你的数据库主机，留空默认为localhost
+  	'PORT': '3306', #你的数据库端口
+  }
+}
 
 
 # Password validation
