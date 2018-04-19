@@ -52,11 +52,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'project.urls'
-
+BASE_TEMPLATE_DIRS = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # 'DIRS': [],
         'DIRS': ['frontend/dist'],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -113,7 +112,7 @@ DATABASES = {
 #  'default': {  
 #  'ENGINE': 'django.db.backends.mysql',
 #  'NAME': 'lagouone', #你的数据库名称 数据库需要自己提前建好
-#  'USER': 'root', #你的数据库用户名
+#  'USER': 'lagouone', #你的数据库用户名
 #  'PASSWORD': 'Marphy0817', #你的数据库密码
 #  'HOST': '', #你的数据库主机，留空默认为localhost
 #  'PORT': '3306', #你的数据库端口
@@ -153,11 +152,18 @@ USE_L10N = True
 
 USE_TZ = True
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "frontend/dist/static"),
+   os.path.join(BASE_DIR, "frontend/dist/static"),
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+#STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, "frontend/dist/static"),
+#    '/usr/Crawler/Daas/project/frontend/dist/static',
+#]
