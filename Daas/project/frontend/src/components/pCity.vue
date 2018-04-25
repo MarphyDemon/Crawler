@@ -6,7 +6,7 @@
             </div>
             <div class="city-salary-font">
                 <div class="city-salary-det">
-                    <h3>收集城市数量前500的数据</h3>
+                    <h3>收集招聘数量>500的数据</h3>
                     <span>为清晰显示数据的基本趋势，以下为市场回归数据</span>
                 </div>
             </div>

@@ -102,7 +102,6 @@ export default {
       vaildCount: 0,
       backBtnFlag: false,
       downFlag: false,
-      selectmod: false,
       moduleFlag: false,
       firstChartFlag: false,
       loading: false,
@@ -186,13 +185,17 @@ export default {
     },
     downloadReport() {
       var that = this;
-      that.selectmod = true;
+      that.moduleFlag = true;
     },
     moduleBack() {
       this.moduleFlag = false;
-      this.selectmod = false;
     },
     sureDown() {
+        this.moduleFlag = false;
+        this.downFlag = false;
+        this.$nextTick(()=>{
+            print()
+        })
     },
      // 返回顶部按钮
     backtop() {

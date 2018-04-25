@@ -101,7 +101,7 @@ def lagou(page,position,city):
     db.close()
     time.sleep(1)
             
-def main(position):
+def main():
     db = pymysql.connect(**config)
     cursor = db.cursor()
     sql = "select * from citylist order by letter ASC"  
@@ -119,6 +119,5 @@ def main(position):
     except:
         print("Error")
         pass
-#输入你想要爬取的职位名,如:python
 if __name__ == '__main__':
-    main('c')
+    main()

@@ -24,9 +24,9 @@
 				</label>
 				
 				<div class="login-btn">
-					<div class="user-btn-link">
+					<!-- <div class="user-btn-link">
 						<a href="">找回密码？</a>
-					</div>
+					</div> -->
 					<span class="join" v-on:click="jumpJoin">注册</span>
 					<span v-on:click="login">登录</span>
 				</div>

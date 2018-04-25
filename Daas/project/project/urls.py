@@ -42,4 +42,5 @@ urlpatterns = [
     url(r'^regist', user.regist, name = 'regist'),
     url(r'^logout', user.logout, name = 'logout'),
     url(r'^index', user.index, name = 'index'),
+    
 ]

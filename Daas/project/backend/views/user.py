@@ -24,7 +24,7 @@ def regist(request):
     username = request.POST.get('username',None)
     phoneNum = request.POST.get('phoneNum',None)
     email = request.POST.get('email',None)
-    password = request.POST.get('password',None) 
+    repassword = request.POST.get('password',None) 
     date_joined = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     sqlC = 'select username from auth_user where username=%s or email=%s or phoneNum=%s'
     res = cursor.execute(sqlC,(username,email,phoneNum))
@@ -32,9 +32,9 @@ def regist(request):
         body['msg'] = '已有账号，请登录！'
         result=resp.handle(body,True)
     else:
-        sql = "insert into auth_user(username,phoneNum,email,password,date_joined,is_superuser)values (%s,%s,%s,%s,%s,%s)"
+        sql = "insert into auth_user(username,phoneNum,email,repassword,date_joined,password,is_superuser)values (%s,%s,%s,%s,%s,%s,%s)"
         try:
-            cursor.execute(sql,(username,phoneNum,email,password,date_joined,'0'))
+            cursor.execute(sql,(username,phoneNum,email,repassword,date_joined,password,'0'))
             db.commit()
             body['msg'] = '1'
             result=resp.handle(body,True)
@@ -52,10 +52,10 @@ def login(request):
     db = pymysql.connect(**config)
     cursor = db.cursor()
     username = request.POST.get('username',None)
-    password = request.POST.get('password',None) 
-    sql = "select username from auth_user where (username=%s or email=%s or phoneNum=%s) and password=%s"
+    repassword = request.POST.get('password',None) 
+    sql = "select username from auth_user where (username=%s or email=%s or phoneNum=%s) and repassword=%s"
     try:
-        res = cursor.execute(sql,(username,username,username,password))
+        res = cursor.execute(sql,(username,username,username,repassword))
         results = cursor.fetchall()
         if res:
             for (row,) in results:

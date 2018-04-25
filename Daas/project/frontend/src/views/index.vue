@@ -190,10 +190,14 @@ export default {
       that.moduleFlag = true;
     },
     moduleBack() {
-      this.moduleFlag = false;
+        this.moduleFlag = false;
     },
     sureDown() {
-        
+        this.moduleFlag = false;
+        this.downFlag = false;
+        this.$nextTick(()=>{
+            print()
+        })
     },
      // 返回顶部按钮
     backtop() {

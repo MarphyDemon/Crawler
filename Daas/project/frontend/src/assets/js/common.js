@@ -1,17 +1,11 @@
 
 export function GetCookie(name) {  
-    var arg = name + "=";  
-    var alen = arg.length;  
-    var clen = document.cookie.length;  
-    var i = 0;  
-    while (i < clen) {  
-        var j = i + alen;  
-        if (document.cookie.substring(i, j) == arg)
-            var endstr = document.cookie.indexOf(";", j);  
-            if (endstr == -1) endstr = document.cookie.length;  
-                return unescape(document.cookie.substring(j, endstr));
-        i = document.cookie.indexOf(" ", i) + 1;  
-        if (i == 0) break;  
+    var cookie = document.cookie;
+    var cookieArr = cookie.split('; ');
+    for(var i=0;i<cookieArr.length;i++){
+        if(cookieArr[i].indexOf(name)!=-1){
+            var result = cookieArr[i].split('=');
+            return result[i]
+        }
     }  
-    return null;  
 } 

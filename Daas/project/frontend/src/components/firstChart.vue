@@ -130,7 +130,7 @@ export default {
           split: true,
           enabled: true,
           style: {
-            // 文字内容相关样式
+            // 文字内容相关  样式
             color: "#7b8390",
             fontSize: "12px",
             textalign: "center"

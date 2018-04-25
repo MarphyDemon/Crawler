@@ -10,7 +10,7 @@
                 <p-job></p-job>
                 <p-company></p-company>
                 <p-city></p-city>
-                <div v-if="downFlag" class="download">
+                <div class="download">
                     <div class="download-div">
                         <span v-on:click="downloadReport">下载统计报告</span>
                     </div>
@@ -71,8 +71,8 @@ export default {
   data() {
     return {
       backBtnFlag: false,
-      downFlag: false,
       moduleFlag: false,
+      selectmod: false,
     };
   },
   mounted() {
@@ -93,13 +93,17 @@ export default {
   methods: {
     downloadReport() {
       var that = this;
-      that.selectmod = true;
+      this.moduleFlag = true;
     },
     moduleBack() {
       this.moduleFlag = false;
-      this.selectmod = false;
     },
     sureDown() {
+        this.moduleFlag = false;
+        this.downFlag = false;
+        this.$nextTick(()=>{
+            print()
+        })
     },
      // 返回顶部按钮
     backtop() {
