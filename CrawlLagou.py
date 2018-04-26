@@ -1212,7 +1212,7 @@ def run_spider(city):
     s = AsySpider(urls, 16)
     s.run()
 
-def main():
+def func():
     _st = time.time()
     p = Pool()
     # all_num = 73000
@@ -1239,6 +1239,14 @@ def main():
         pass
     cursor.close()
     db.close()
+
+def main(h=1,m=0):  
+    while True:  
+        now = datetime.datetime.now()  
+        if now.hour == h and now.minute == m:  
+            break  
+        time.sleep(3600)  
+    func()  
 
 if __name__ == '__main__':
     main()
