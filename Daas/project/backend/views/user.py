@@ -33,9 +33,9 @@ def regist(request):
         body['msg'] = '已有账号，请登录！'
         result=resp.handle(body,True)
     else:
-        sql = "insert into auth_user(username,phoneNum,email,repassword,date_joined,password,is_superuser)values (%s,%s,%s,%s,%s,%s,%s)"
+        sql = "insert into auth_user(username,phoneNum,email,repassword,date_joined,is_superuser)values (%s,%s,%s,%s,%s,%s)"
         try:
-            cursor.execute(sql,(username,phoneNum,email,repassword,date_joined,password,'0'))
+            cursor.execute(sql,(username,phoneNum,email,repassword,date_joined,'0'))
             db.commit()
             body['msg'] = '1'
             result=resp.handle(body,True)
