@@ -2,20 +2,20 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.db.models.functions import TruncDate
 import pymysql
-from backend.views import resp
+from backend.views import resp,sqlsetting
 # Create your views here.
 import logging
 # Get an instance of a logger
 logger = logging.getLogger('sourceDns.webdns.views')
-config={
-    "host":"127.0.0.1",
-    "user":"root",
-    "password":"marphy0817",
-    "database":"lagouone",
-    "charset":"utf8"
-}
+# config={
+#     "host":"127.0.0.1",
+#     "user":"root",
+#     "password":"marphy0817",
+#     "database":"lagouone",
+#     "charset":"utf8"
+# }
 def getSucCount():
-    db = pymysql.connect(**config)
+    db = pymysql.connect(**sqlsetting.con())
     cursor = db.cursor()
     sql='select count(*) from jobdata'
     cursor.execute(sql)    #执行sql语句  
@@ -27,7 +27,7 @@ def getSucCount():
     return result
 
 def getFailCount():
-    db = pymysql.connect(**config)
+    db = pymysql.connect(**sqlsetting.con())
     cursor = db.cursor()
     sql='select count(*) from jobdata where avgSalary=0 or (grade="中级" and  avgSalary>45) or (grade="高级" and  avgSalary>70) or industry="" or financeStage="" or companySize=""'
     cursor.execute(sql)    #执行sql语句  
@@ -55,7 +55,7 @@ def getCount(request):
 
 def getPJob(request):
     body = {}
-    db = pymysql.connect(**config)
+    db = pymysql.connect(**sqlsetting.con())
     cursor = db.cursor()
     sql='select positionName, count(*) AS count from jobdata group by positionName order by count desc'
     try:
@@ -80,7 +80,7 @@ def getPJob(request):
     
 def getPCom(request):
     body = {}
-    db = pymysql.connect(**config)
+    db = pymysql.connect(**sqlsetting.con())
     cursor = db.cursor()
     sql='select companyFullName, count(*) AS count from jobdata group by companyFullName order by count desc'
     try:
@@ -104,7 +104,7 @@ def getPCom(request):
 
 def getPCity(request):
     body={}
-    db = pymysql.connect(**config)
+    db = pymysql.connect(**sqlsetting.con())
     cursor = db.cursor()
     sql='select city, count(*) AS count from jobdata group by city order by count desc'
     try:
@@ -129,7 +129,7 @@ def getPCity(request):
 
 def getCList(request):
     body={}
-    db = pymysql.connect(**config)
+    db = pymysql.connect(**sqlsetting.con())
     cursor = db.cursor()
     sql='select name from bosscity'
     citylist = []
@@ -148,7 +148,7 @@ def getCList(request):
 
 def getIList(request):
     body={}
-    db = pymysql.connect(**config)
+    db = pymysql.connect(**sqlsetting.con())
     cursor = db.cursor()
     sql='select name from industry'
     industryList = []

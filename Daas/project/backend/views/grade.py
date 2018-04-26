@@ -2,18 +2,18 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.db.models.functions import TruncDate
 import pymysql
-from backend.views import resp
+from backend.views import resp,sqlsetting
 # Create your views here.
 import logging
 # Get an instance of a logger
 logger = logging.getLogger('sourceDns.webdns.views')
-config={
-    "host":"127.0.0.1",
-    "user":"root",
-    "password":"marphy0817",
-    "database":"lagouone",
-    "charset":"utf8"
-}
+# config={
+#     "host":"127.0.0.1",
+#     "user":"root",
+#     "password":"marphy0817",
+#     "database":"lagouone",
+#     "charset":"utf8"
+# }
 
 SalaryList = [{},{},{}]
 MinSalarylist = []
@@ -24,7 +24,7 @@ def getfirstGrade(grade,positionName):
     global MinSalarylist
     global MaxSalarylist
     global AvgSalarylist
-    db = pymysql.connect(**config)
+    db = pymysql.connect(**sqlsetting.con())
     cursor = db.cursor()
     positionName = '%'+positionName+'%'
     sql='select avgSalary from jobdata where grade= %s and positionName like %s and avgSalary>0 and industry!="" order by avgSalary'
@@ -87,7 +87,7 @@ def getGrade(request):
 
 
 def getGradeSalary(grade,positionName):
-    db = pymysql.connect(**config)
+    db = pymysql.connect(**sqlsetting.con())
     cursor = db.cursor()
     positionName = '%'+positionName+'%'
     sql='select avgSalary from jobdata where grade= %s and positionName like %s and avgSalary>0 order by avgSalary'
