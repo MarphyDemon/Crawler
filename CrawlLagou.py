@@ -7,7 +7,7 @@
 
 import time
 from multiprocessing import Pool
-from datetime import timedelta
+import datetime
 from tornado import httpclient, gen, ioloop, queues
 import time
 import requests
@@ -1198,7 +1198,7 @@ class AsySpider(object):
         # Start workers, then wait for the work queue to be empty.
         for _ in range(self.concurrency):
             worker()
-        yield self._q.join(timeout=timedelta(seconds=30000))
+        yield self._q.join(timeout=datetime(seconds=30000))
         assert self._fetching == self._fetched
 
     def run(self):
