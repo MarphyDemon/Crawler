@@ -10,7 +10,7 @@
                     <span>为清晰显示数据的基本趋势，以下为市场回归数据</span>
                 </div>
             </div>
-            <div id="pcompany-container" style="min-width: 800px;  min-height: 800px;"></div>
+            <div id="pcompany-container" style="min-width: 800px;  min-height: 800px;"></div> 
         </div>
     </div>
     

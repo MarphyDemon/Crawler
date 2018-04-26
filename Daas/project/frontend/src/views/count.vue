@@ -9,7 +9,7 @@
                 </div>
                 <p-job></p-job>
                 <p-city></p-city>
-                <p-company></p-company>
+                <p-company></p-company> 
                 <div class="download">
                     <div class="download-div">
                         <span v-on:click="downloadReport">下载统计报告</span>
