@@ -8,8 +8,8 @@
                     <h1>统计报告</h1>
                 </div>
                 <p-job></p-job>
-                <p-company></p-company>
                 <p-city></p-city>
+                <p-company></p-company>
                 <div class="download">
                     <div class="download-div">
                         <span v-on:click="downloadReport">下载统计报告</span>
