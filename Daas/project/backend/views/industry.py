@@ -50,8 +50,8 @@ def getfirstIndustry(grade,positionName,city,industry):
         minS = result[0]
         length = len(result)-1
         maxS = result[length]
-        if(maxS>(avgS*2)):
-            maxS = avgS + 5520
+        # if(maxS>(avgS*2)):
+        #     maxS = avgS + 5520
     else:
         minS=''
         maxS=''
