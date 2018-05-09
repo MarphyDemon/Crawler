@@ -1243,7 +1243,7 @@ def main(h=12,m=0):
     while True:  
         now = datetime.datetime.now()  
         if now.hour == h and now.minute == m:  
-            # break  
+             break  
         time.sleep(3600)  
     func()  
 

@@ -1106,11 +1106,11 @@ class ZlcrawlSpider(Spider):
         wbdata = response.text
         soup = BeautifulSoup(wbdata, 'lxml')
         job_name = soup.select("table.newlist > tr > td.zwmc > div > a:nth-of-type(1)")
-        salary = soup.select("table.newlist > tr > td.zwyx")
+        # salary = soup.select("table.newlist > tr > td.zwyx")
         # company_name = soup.select("table.newlist > tr > td.gsmc > div > a:nth-of-type(2)")
-        times = soup.select("table.newlist > tr > td.gxsj > span")
+        # times = soup.select("table.newlist > tr > td.gxsj > span")
         if job_name!=[] or page<90:
-            for name,salary,time in zip(job_name,salary,times):
+            for name in job_name:
                 # item = ZhaopinItem()
                 # item["positionName"] = name.get_text()
                 url= name.get('href')
@@ -1132,10 +1132,10 @@ class ZlcrawlSpider(Spider):
                 # print(item,"lidongdong")
                 # http://jobs.zhaopin.com/CC345056287J00026172912.htm lidongdong
                 # http://jobs.zhaopin.com/554310027250571.htm lidongdong
-                yield Request(url=url,callback=self.parse_moive,dont_filter=True)  # ,
+                yield Request(url=url,meta={"area": i},callback=self.parse_moive,dont_filter=True)  # ,
             page=page+1
             url='http://sou.zhaopin.com/jobs/searchresult.ashx?jl='+i+'&p='+str(page)
-            yield Request(url,headers=self.headers, callback=self.parse)
+            yield Request(url,meta={"city": i},headers=self.headers, callback=self.parse)
 
 
  
@@ -1168,7 +1168,7 @@ class ZlcrawlSpider(Spider):
         industry = jobsoup.select('ul.terminal-ul.clearfix li strong')[9].text.strip()
         jobNature = jobsoup.select('div.terminalpage-left strong')[3].text.strip()
         workYear = jobsoup.select('div.terminalpage-left strong')[4].text.strip()
-        city = jobsoup.select('div.terminalpage-left strong a')[1].text.strip()
+        city = response.meta['area']
         industryField = jobsoup.select('div.terminalpage-left strong')[7].text.strip()
         url = response.url
         urlName = url.split('/')[3].split('.')[0]
@@ -1225,4 +1225,4 @@ class ZlcrawlSpider(Spider):
             except:
                 db.rollback()
         db.close()  
-        time.sleep(2)
+        time.sleep(1)
