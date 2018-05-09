@@ -57,7 +57,7 @@ def getPJob(request):
     body = {}
     db = pymysql.connect(**sqlsetting.con())
     cursor = db.cursor()
-    sql='select positionName, count(*) AS count from jobdata group by positionName order by count desc'
+    sql='select secondType, count(*) AS count from jobdata group by positionName order by count desc'
     try:
         cursor.execute(sql)    #执行sql语句  
         results = cursor.fetchall()
@@ -89,7 +89,7 @@ def getPCom(request):
         xAxis=[]
         series=[]
         for row in results:
-            if(row[1]>150):
+            if(row[1]>200):
                 positionName=row[0]
                 hotdata=row[1]
                 xAxis.append(positionName)

@@ -1,10 +1,13 @@
-from django.shortcuts import render
-from django.http import JsonResponse
-from django.db.models.functions import TruncDate
-import pymysql
-from backend.views import resp,sqlsetting
 # Create your views here.
 import logging
+import time
+
+import pymysql
+from backend.views import resp, sqlsetting
+from django.db.models.functions import TruncDate
+from django.http import JsonResponse
+from django.shortcuts import render
+
 # Get an instance of a logger
 logger = logging.getLogger('sourceDns.webdns.views')
 # config={
@@ -22,13 +25,14 @@ def getfirstData(grade,positionName,year,month,city):
     positionName = '%'+positionName+'%'
     # year = year + '-%'
     # month = '%-'+month+"-%"
-    datestr = year + '-%'+month+"-%"
+    datestr = year + '-'+month+"-%"
     if year and month:
         sql='select count(*) from jobdata where grade= %s and positionName like %s and createTime like %s and avgSalary>0 and city=%s and industry!=""'
         cursor.execute(sql,(grade,positionName,datestr,city))    #执行sql语句  
     else:
         sql='select count(*) from jobdata where grade= %s and positionName like %s and avgSalary>0 and city=%s and industry!=""'
         cursor.execute(sql,(grade,positionName,city))
+    print(sql)
     results = cursor.fetchall()
     result= 0
     if results:
@@ -57,7 +61,7 @@ def getCityNeed(request):
             for j in gradeName:
                 count = getfirstData(i,positionName,year,j,city)
                 seriesData.append(count)
-            seriesChild['name']=i
+            seriesChild['name']=iCrawl
             seriesChild['data']=seriesData
             seriesList.append(seriesChild)
         body['series'] = seriesList
@@ -67,4 +71,3 @@ def getCityNeed(request):
         body = 'Error'
         result=resp.handle(body,False)
     return JsonResponse(result, safe=False)
-
