@@ -1084,7 +1084,7 @@ class ZlcrawlSpider(Spider):
             results = cursor.fetchall()
             for (i,) in results:
                 url='http://sou.zhaopin.com/jobs/searchresult.ashx?jl='+str(i)+'&p='+str(page)
-                # yield Request(url,meta={"city": i},headers=self.headers, callback=self.parse)
+                yield Request(url,meta={"city": i},headers=self.headers, callback=self.parse)
             # print(res)
             p.close()
             p.join()
@@ -1096,8 +1096,8 @@ class ZlcrawlSpider(Spider):
         db.close()
             #.format(num)
         #yield Request(url,callback=self.parse)
-        url='http://sou.zhaopin.com/jobs/searchresult.ashx?jl=北京&p='+str(page)
-        yield Request(url,meta={"city": '北京'},headers=self.headers, callback=self.parse)
+        # url='http://sou.zhaopin.com/jobs/searchresult.ashx?jl=北京&p='+str(page)
+        # yield Request(url,meta={"city": '北京'},headers=self.headers, callback=self.parse)
 
     def parse(self, response):
         #self.log('page url is ' + response.url)
