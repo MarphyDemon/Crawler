@@ -1239,7 +1239,7 @@ def func():
     cursor.close()
     db.close()
 
-def main(h=11,m=33):  
+def main(h=11,m=40):  
     while True:  
         now = datetime.datetime.now()  
         if now.hour == h and now.minute == m:  
