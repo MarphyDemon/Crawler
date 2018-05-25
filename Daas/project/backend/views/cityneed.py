@@ -8,6 +8,9 @@ from django.db.models.functions import TruncDate
 from django.http import JsonResponse
 from django.shortcuts import render
 
+# from multiprocessing import Process, current_process, Queue
+# from itertools import product   #笛卡尔积
+
 # Get an instance of a logger
 logger = logging.getLogger('sourceDns.webdns.views')
 # config={
@@ -32,7 +35,6 @@ def getfirstData(grade,positionName,year,month,city):
     else:
         sql='select count(*) from jobdata where grade= %s and positionName like %s and avgSalary>0 and city=%s and industry!=""'
         cursor.execute(sql,(grade,positionName,city))
-    print(sql)
     results = cursor.fetchall()
     result= 0
     if results:
@@ -42,6 +44,7 @@ def getfirstData(grade,positionName,year,month,city):
        result = 0
     cursor.close()
     db.close()
+    # q.put(result)
     return result
 
 def getCityNeed(request):
@@ -52,6 +55,7 @@ def getCityNeed(request):
     positionName = request.POST.get('positionName',None)
     year = request.POST.get('year',None) 
     city = request.POST.get('city',None)
+    # q = Queue()
     try:
         gradeArray = ['入门','初级','中级','高级','专家','不限']
         gradeName = ['01','02','03','04','05','06','07','08','09','10','11','12']
@@ -59,11 +63,15 @@ def getCityNeed(request):
             seriesData=[]
             seriesChild={}
             for j in gradeName:
+                # count = Process(target=getfirstData, args=(i,positionName,year,j,city,q))
                 count = getfirstData(i,positionName,year,j,city)
+                # count.start()
+                # seriesData.append(q.get())
                 seriesData.append(count)
-            seriesChild['name']=iCrawl
+            seriesChild['name']=i
             seriesChild['data']=seriesData
             seriesList.append(seriesChild)
+            # count.join()
         body['series'] = seriesList
         body['gradeName'] = gradeName
         result=resp.handle(body,True)
