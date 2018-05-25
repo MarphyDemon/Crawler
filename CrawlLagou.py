@@ -1239,12 +1239,12 @@ def func():
     cursor.close()
     db.close()
 
-def main(h=11,m=50):  
-    while True:  
-        now = datetime.datetime.now()  
-        if now.hour == h and now.minute == m:  
-            break
-        time.sleep(3600)
+def main(h=11,m=54):  
+    # while True:  
+    #     now = datetime.datetime.now()  
+    #     if now.hour == h and now.minute == m:  
+    #         break
+        # time.sleep(360)
     func()
 
 if __name__ == '__main__':
