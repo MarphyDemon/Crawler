@@ -2,8 +2,9 @@
 # -*- coding:utf-8 -*-
 
 # 多进程爬取拉勾网招聘数据   
+# 使用tornado 
 
-#动态添加User-Agent  添加反扒技术
+#动态添加User-Agent  
 
 import time
 from multiprocessing import Pool
